@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" class="light-mode">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalkEase - Language Learning App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-language"></i> TalkEase
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home" class="active"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#chat"><i class="fas fa-comment-dots"></i> Chatbot</a></li>
+                    <li><a href="#lesson"><i class="fas fa-book"></i> Lesson Generator</a></li>
+                    <li><a href="#progress"><i class="fas fa-trophy"></i> Progress</a></li>
+                </ul>
+            </nav>
+            <div class="theme-toggle">
+                <button id="theme-toggle-btn">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <h1>Welcome to TalkEase</h1>
+                <p class="subtitle">Your AI-powered language learning companion</p>
+                <div class="feature-cards">
+                    <div class="feature-card" data-target="chat">
+                        <i class="fas fa-comment-dots"></i>
+                        <h3>AI Chatbot</h3>
+                        <p>Practice conversations with our intelligent language tutor</p>
+                        <button class="btn-primary">Start Chat</button>
+                    </div>
+                    <div class="feature-card" data-target="lesson">
+                        <i class="fas fa-book"></i>
+                        <h3>Lesson Generator</h3>
+                        <p>Create custom lessons tailored to your interests</p>
+                        <button class="btn-primary">Generate Lesson</button>
+                    </div>
+                    <div class="feature-card" data-target="progress">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Track Progress</h3>
+                        <p>Monitor your learning journey and earn badges</p>
+                        <button class="btn-primary">View Progress</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chat Section -->
+        <section id="chat" class="section">
+            <h2><i class="fas fa-comment-dots"></i> Language Practice Chatbot</h2>
+            <div class="chat-container">
+                <div id="chat-box">
+                    <div class="message bot-message">
+                        <div class="avatar">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/bot-avatar.jpg-ZJd6kTjzi2T9wNduoG1Mc6Gl6ykmhU.jpeg" alt="Bot Avatar">
+                        </div>
+                        <div class="message-content">
+                            <p>Hello! I'm your language tutor. How can I help you today?</p>
+                            <span class="timestamp">Today, 10:00 AM</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="typing-indicator" class="hidden">
+                    <div class="avatar">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/bot-avatar.jpg-ZJd6kTjzi2T9wNduoG1Mc6Gl6ykmhU.jpeg" alt="Bot Avatar">
+                    </div>
+                    <div class="typing">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="chat-input-container">
+                    <button id="voice-input-btn" title="Voice Input">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <input type="text" id="chat-input" placeholder="Type a message...">
+                    <button id="send-btn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                    <button id="text-to-speech-btn" title="Text to Speech">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lesson Generator Section -->
+        <section id="lesson" class="section">
+            <h2><i class="fas fa-book"></i> Custom Lesson Generator</h2>
+            <div class="lesson-form">
+                <div class="form-group">
+                    <label for="lesson-language"><i class="fas fa-globe"></i> Language:</label>
+                    <select id="lesson-language">
+                        <option value="">Select a language</option>
+                        <option value="spanish">🇪🇸 Spanish</option>
+                        <option value="french">🇫🇷 French</option>
+                        <option value="german">🇩🇪 German</option>
+                        <option value="italian">🇮🇹 Italian</option>
+                        <option value="japanese">🇯🇵 Japanese</option>
+                        <option value="mandarin">🇨🇳 Mandarin</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="lesson-topic"><i class="fas fa-list"></i> Topic:</label>
+                    <select id="lesson-topic">
+                        <option value="">Select a topic</option>
+                        <option value="greetings">👋 Greetings & Introductions</option>
+                        <option value="travel">✈️ Travel & Directions</option>
+                        <option value="food">🍽️ Food & Dining</option>
+                        <option value="shopping">🛍️ Shopping</option>
+                        <option value="business">💼 Business Conversations</option>
+                        <option value="culture">🏛️ Cultural Topics</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="lesson-level"><i class="fas fa-layer-group"></i> Difficulty Level:</label>
+                    <select id="lesson-level">
+                        <option value="beginner">🔰 Beginner</option>
+                        <option value="intermediate">🔶 Intermediate</option>
+                        <option value="advanced">⭐ Advanced</option>
+                    </select>
+                </div>
+                <button class="generate-btn" id="generate-lesson-btn">
+                    <span class="btn-text">Generate Lesson</span>
+                    <span class="spinner hidden"></span>
+                </button>
+            </div>
+            
+            <div id="lesson-result" class="hidden">
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <h3 id="lesson-title">Lesson Title</h3>
+                        <div class="lesson-actions">
+                            <button id="save-lesson-btn" title="Save Lesson">
+                                <i class="fas fa-save"></i>
+                            </button>
+                            <button id="share-lesson-btn" title="Share Lesson">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                            <button id="speak-lesson-btn" title="Listen to Lesson">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="lesson-content" id="lesson-content">
+                        <!-- Lesson content will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress Section -->
+        <section id="progress" class="section">
+            <h2><i class="fas fa-trophy"></i> Your Learning Progress</h2>
+            
+            <div class="progress-container">
+                <div class="stats-cards">
+                    <div class="stats-card">
+                        <div class="stats-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <div class="stats-info">
+                            <h3>Chat Sessions</h3>
+                            <p class="stats-value">12</p>
+                        </div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stats-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="stats-info">
+                            <h3>Lessons Completed</h3>
+                            <p class="stats-value">8</p>
+                        </div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stats-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stats-info">
+                            <h3>Learning Streak</h3>
+                            <p class="stats-value">5 days</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="badges-section">
+                    <h3><i class="fas fa-medal"></i> Your Badges</h3>
+                    <div class="badges-container">
+                        <div class="badge">
+                            <div class="badge-icon active">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <p>3-Day Streak</p>
+                        </div>
+                        <div class="badge">
+                            <div class="badge-icon active">
+                                <i class="fas fa-comment"></i>
+                            </div>
+                            <p>10 Chats</p>
+                        </div>
+                        <div class="badge">
+                            <div class="badge-icon active">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <p>5 Lessons</p>
+                        </div>
+                        <div class="badge">
+                            <div class="badge-icon">
+                                <i class="fas fa-fire-alt"></i>
+                            </div>
+                            <p>7-Day Streak</p>
+                        </div>
+                        <div class="badge">
+                            <div class="badge-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <p>25 Chats</p>
+                        </div>
+                        <div class="badge">
+                            <div class="badge-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <p>10 Lessons</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="leaderboard-section">
+                    <h3><i class="fas fa-crown"></i> Leaderboard</h3>
+                    <div class="leaderboard">
+                        <div class="leaderboard-item gold">
+                            <div class="rank">1</div>
+                            <div class="user-avatar">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/user-avatar.jpg-ZLgxbA78cQsPQYH1AACzexODM64bHY.jpeg" alt="User Avatar">
+                            </div>
+                            <div class="user-info">
+                                <p class="user-name">Sarah J.</p>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div class="points">950 pts</div>
+                        </div>
+                        <div class="leaderboard-item silver">
+                            <div class="rank">2</div>
+                            <div class="user-avatar">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/user-avatar.jpg-ZLgxbA78cQsPQYH1AACzexODM64bHY.jpeg" alt="User Avatar">
+                            </div>
+                            <div class="user-info">
+                                <p class="user-name">You</p>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 82%"></div>
+                                </div>
+                            </div>
+                            <div class="points">820 pts</div>
+                        </div>
+                        <div class="leaderboard-item bronze">
+                            <div class="rank">3</div>
+                            <div class="user-avatar">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/user-avatar.jpg-ZLgxbA78cQsPQYH1AACzexODM64bHY.jpeg" alt="User Avatar">
+                            </div>
+                            <div class="user-info">
+                                <p class="user-name">Alex M.</p>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 78%"></div>
+                                </div>
+                            </div>
+                            <div class="points">780 pts</div>
+                        </div>
+                        <div class="leaderboard-item">
+                            <div class="rank">4</div>
+                            <div class="user-avatar">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/user-avatar.jpg-ZLgxbA78cQsPQYH1AACzexODM64bHY.jpeg" alt="User Avatar">
+                            </div>
+                            <div class="user-info">
+                                <p class="user-name">Jamie T.</p>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 65%"></div>
+                                </div>
+                            </div>
+                            <div class="points">650 pts</div>
+                        </div>
+                        <div class="leaderboard-item">
+                            <div class="rank">5</div>
+                            <div class="user-avatar">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/user-avatar.jpg-ZLgxbA78cQsPQYH1AACzexODM64bHY.jpeg" alt="User Avatar">
+                            </div>
+                            <div class="user-info">
+                                <p class="user-name">Taylor R.</p>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 60%"></div>
+                                </div>
+                            </div>
+                            <div class="points">600 pts</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 TalkEase Language Learning. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <audio id="message-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-software-interface-start-2574.mp3"></audio>
+    <audio id="notification-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-positive-notification-951.mp3"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
