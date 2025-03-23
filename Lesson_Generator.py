@@ -2,7 +2,7 @@ import requests
 import os
 import re
 API_URL = "https://router.huggingface.co/hf-inference/models/mistralai/Mixtral-8x7B-Instruct-v0.1"
-HEADERS = {"Authorization": "Bearer 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"}  # Replace with your API key
+HEADERS = {"Authorization": "Bearer Your API key"}  # Replace with your API key
     
 # def format_prompt(topic, language):
 #     """Format user input to instruct Mixtral to generate a language lesson."""
