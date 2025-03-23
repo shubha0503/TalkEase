@@ -16,7 +16,7 @@ app.add_middleware(
 )
 
 API_URL = "https://router.huggingface.co/hf-inference/models/mistralai/Mixtral-8x7B-Instruct-v0.1"
-HEADERS = {"Authorization": "Bearer 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"}  
+HEADERS = {"Authorization": "Bearer Your API Key"}  
 
 class LessonRequest(BaseModel):
     topic: str
