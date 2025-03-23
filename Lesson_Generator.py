@@ -1,6 +1,7 @@
 import requests
 import os
 import re
+import random
 API_URL = "https://router.huggingface.co/hf-inference/models/mistralai/Mixtral-8x7B-Instruct-v0.1"
 HEADERS = {"Authorization": "Bearer Your API key"}  # Replace with your API key
     
@@ -22,8 +23,6 @@ HEADERS = {"Authorization": "Bearer Your API key"}  # Replace with your API key
 #     if len(lines) > 15:  # Limit to 15 lines max
 #         cleaned = "\n".join(lines[:15]) 
 #     return cleaned
-
-import random
 
 def format_prompt(topic, language):
     """Format user input to instruct Mixtral to generate a structured, varied lesson."""
