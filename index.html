@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TalkEase - Language Learning App</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="static/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -107,63 +107,39 @@
             <h2><i class="fas fa-book"></i> Custom Lesson Generator</h2>
             <div class="lesson-form">
                 <div class="form-group">
-                    <label for="lesson-language"><i class="fas fa-globe"></i> Language:</label>
-                    <select id="lesson-language">
-                        <option value="">Select a language</option>
-                        <option value="spanish">🇪🇸 Spanish</option>
-                        <option value="french">🇫🇷 French</option>
-                        <option value="german">🇩🇪 German</option>
-                        <option value="italian">🇮🇹 Italian</option>
-                        <option value="japanese">🇯🇵 Japanese</option>
-                        <option value="mandarin">🇨🇳 Mandarin</option>
-                    </select>
+                    <label for="lesson-language"><i class="fas fa-globe"></i> Enter Language:</label>
+                    <input type="text" id="lesson-language" placeholder="e.g., Spanish, French, Japanese">
                 </div>
                 <div class="form-group">
-                    <label for="lesson-topic"><i class="fas fa-list"></i> Topic:</label>
-                    <select id="lesson-topic">
-                        <option value="">Select a topic</option>
-                        <option value="greetings">👋 Greetings & Introductions</option>
-                        <option value="travel">✈️ Travel & Directions</option>
-                        <option value="food">🍽️ Food & Dining</option>
-                        <option value="shopping">🛍️ Shopping</option>
-                        <option value="business">💼 Business Conversations</option>
-                        <option value="culture">🏛️ Cultural Topics</option>
-                    </select>
+                    <label for="lesson-topic"><i class="fas fa-list"></i> Enter Topic:</label>
+                    <input type="text" id="lesson-topic" placeholder="e.g., Greetings, Travel, Food">
                 </div>
-                <div class="form-group">
-                    <label for="lesson-level"><i class="fas fa-layer-group"></i> Difficulty Level:</label>
-                    <select id="lesson-level">
-                        <option value="beginner">🔰 Beginner</option>
-                        <option value="intermediate">🔶 Intermediate</option>
-                        <option value="advanced">⭐ Advanced</option>
-                    </select>
-                </div>
-                <button class="generate-btn" id="generate-lesson-btn">
+                        <button class="generate-btn" id="generate-lesson-btn">
                     <span class="btn-text">Generate Lesson</span>
                     <span class="spinner hidden"></span>
                 </button>
             </div>
-            
+    
             <div id="lesson-result" class="hidden">
                 <div class="lesson-card">
                     <div class="lesson-header">
-                        <h3 id="lesson-title">Lesson Title</h3>
-                        <div class="lesson-actions">
-                            <button id="save-lesson-btn" title="Save Lesson">
-                                <i class="fas fa-save"></i>
-                            </button>
-                            <button id="share-lesson-btn" title="Share Lesson">
-                                <i class="fas fa-share-alt"></i>
-                            </button>
-                            <button id="speak-lesson-btn" title="Listen to Lesson">
-                                <i class="fas fa-volume-up"></i>
-                            </button>
-                        </div>
-                    </div>
+                <h3 id="lesson-title">Lesson Title</h3>
+                <div class="lesson-actions">
+                    <button id="save-lesson-btn" title="Save Lesson">
+                        <i class="fas fa-save"></i>
+                    </button>
+                    <button id="share-lesson-btn" title="Share Lesson">
+                        <i class="fas fa-share-alt"></i>
+                    </button>
+                    <button id="speak-lesson-btn" title="Listen to Lesson">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                </div>
+        </div>
                     <div class="lesson-content" id="lesson-content">
                         <!-- Lesson content will be inserted here -->
                     </div>
-                </div>
+        </div>
             </div>
         </section>
 
@@ -330,6 +306,6 @@
     <audio id="message-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-software-interface-start-2574.mp3"></audio>
     <audio id="notification-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-positive-notification-951.mp3"></audio>
 
-    <script src="script.js"></script>
+    <script src="static/script.js"></script>
 </body>
 </html>
