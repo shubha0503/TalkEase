@@ -4,25 +4,6 @@ import re
 import random
 API_URL = "https://router.huggingface.co/hf-inference/models/mistralai/Mixtral-8x7B-Instruct-v0.1"
 HEADERS = {"Authorization": "Bearer Your API key"}  # Replace with your API key
-    
-# def format_prompt(topic, language):
-#     """Format user input to instruct Mixtral to generate a language lesson."""
-#     # return f"Create a beginner-friendly lesson on '{topic}' in '{language}'. Make it engaging with examples."
-#     return f"Teach me about '{topic}' in '{language}'. Explain it in a beginner-friendly way with examples and pronunciation (if applicable). Keep it short, clear, and practical for daily use."
-    
-# def clean_text(response):
-#     """Removes instruction markers, redundant prompt text, and shortens output."""
-#     cleaned = response.replace("<s>", "").replace("[INST]", "").replace("[/INST]", "").strip()
-    
-#     # Remove redundant prompt at the beginning
-#     if "Create a beginner-friendly lesson" in cleaned:
-#         cleaned = cleaned.split("Create a beginner-friendly lesson", 1)[-1].strip()
-    
-#     # Trim long responses while keeping key info
-#     lines = cleaned.split("\n")  
-#     if len(lines) > 15:  # Limit to 15 lines max
-#         cleaned = "\n".join(lines[:15]) 
-#     return cleaned
 
 def format_prompt(topic, language):
     """Format user input to instruct Mixtral to generate a structured, varied lesson."""
@@ -104,33 +85,3 @@ def generate_lesson(topic, language):
     
     except requests.exceptions.RequestException as e:
         return f"API Error: {str(e)}"
-
-
-
-# def generate_lesson(topic, language):
-#     """Sends request to Mixtral API to generate a structured lesson."""
-#     prompt = format_prompt(topic, language)
-    
-#     try:
-#         response = requests.post(API_URL, headers=HEADERS, json={"inputs": prompt})
-#         response.encoding = 'utf-8'  
-#         response.raise_for_status() # Raise error for bad response status
-        
-#         result = response.json()
-        
-#         if isinstance(result, list) and "generated_text" in result[0]:
-#             return clean_text(result[0]["generated_text"])
-#         else:
-#             return "Error: Unexpected response format"
-    
-#     except requests.exceptions.RequestException as e:
-#         return f"API Error: {str(e)}"
-
-
-
-
-# ✅ Test API Response
-# if __name__ == "__main__":
-#     topic = "Basic Greetings"
-#     language = "Japanese"
-#     print(generate_lesson(topic, language))
