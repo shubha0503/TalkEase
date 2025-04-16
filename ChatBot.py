@@ -92,6 +92,6 @@ def chat(prompt: str, session_id=None):
 #         # Store bot response
 #         chat_sessions[session_id].append(f"Bot: {bot_response}")
 
-        return bot_response
-    except requests.exceptions.RequestException as e:
-        return f"API Error: {str(e)}"
+    #     return bot_response
+    # except requests.exceptions.RequestException as e:
+    #     return f"API Error: {str(e)}"
