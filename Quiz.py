@@ -7,7 +7,7 @@ from google.cloud import firestore
 # Constants (tune yeh apne actual values se replace karni hongi)
 API_URL = "https://router.huggingface.co/hf-inference/models/mistralai/Mixtral-8x7B-Instruct-v0.1"
 HEADERS = {
-    "Authorization": "Bearer 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",
+    "Authorization": "Bearer yoou hf key",
     "Content-Type": "application/json"
 }
 
