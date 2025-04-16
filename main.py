@@ -61,7 +61,18 @@ async def websocket_chat(websocket: WebSocket):
         # ✅ Clean up the session when WebSocket disconnects
         chat_sessions.pop(session_id, None)
 
+@app.get("/generate_quiz/")
+async def quiz_endpoint():
+    """Auto-fetch latest lesson topic and generate quiz."""
+    latest_topic, latest_language = await fetch_latest_lesson()
+    
+    if not latest_topic:
+        return {"error": "No lesson topic found in database."}
 
+    quiz = await generate_quiz()
+    return quiz
+    
 @app.get("/")
 def root():
     return {"message": "Welcome to the Language Learning API! How can I help you today?"}
+
