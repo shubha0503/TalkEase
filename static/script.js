@@ -470,54 +470,122 @@ document.addEventListener("DOMContentLoaded", () => {
           window.speechSynthesis.speak(utterance);
       }
   }
-    // Generate Lesson from FastAPI
-    async function generateLesson() {
-        const language = lessonLanguage.value;
-        const topic = lessonTopic.value;
+    // // Generate Lesson from FastAPI
+    // async function generateLesson() {
+    //     const language = lessonLanguage.value;
+    //     const topic = lessonTopic.value;
 
-        if (!language || !topic) {
-            showToast("Please select a language and a topic!", "warning");
-            return;
-        }
+    //     if (!language || !topic) {
+    //         showToast("Please select a language and a topic!", "warning");
+    //         return;
+    //     }
 
-        // Show loading animation
-        const spinner = document.querySelector(".spinner");
-        const btnText = document.querySelector(".btn-text");
+    //     // Show loading animation
+    //     const spinner = document.querySelector(".spinner");
+    //     const btnText = document.querySelector(".btn-text");
 
-        spinner.classList.remove("hidden");
-        btnText.textContent = "Generating...";
+    //     spinner.classList.remove("hidden");
+    //     btnText.textContent = "Generating...";
 
-        playSound("message-sound");
+    //     playSound("message-sound");
 
-        try {
-            const response = await fetch(`${API_BASE_URL}/generate_lesson/`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ language, topic }),
-            });
+    //     try {
+    //         const response = await fetch(`${API_BASE_URL}/generate_lesson/`, {
+    //             method: "POST",
+    //             headers: { "Content-Type": "application/json" },
+    //             body: JSON.stringify({ language, topic }),
+    //         });
 
-            const data = await response.json();
+    //         const data = await response.json();
 
+    //         // Hide loading animation
+    //         spinner.classList.add("hidden");
+    //         btnText.textContent = "Generate Lesson";
+    //         document.getElementById("lesson-title").textContent = `Lesson: ${topic} in ${language}`;
+    //         document.getElementById("lesson-content").textContent = data.lesson;
+    //         document.getElementById("lesson-result").classList.remove("hidden");
+
+    //         playSound("notification-sound");
+    //         showToast("Lesson generated successfully!", "success");
+
+    //         lessonResult.scrollIntoView({ behavior: "smooth" });
+    //     } catch (error) {
+    //         document.getElementById("lesson-title").textContent = "Error";
+    //         document.getElementById("lesson-content").textContent = "Could not generate lesson. Try again later.";
+    //         document.getElementById("lesson-result").classList.remove("hidden");
+
+    //         playSound("notification-sound");
+    //         showToast("Error fetching lesson!", "error");
+    //     }
+    // }
+  // Generate Lesson from FastAPI
+async function generateLesson() {
+    const language = lessonLanguage.value;
+    const topic = lessonTopic.value;
+
+    if (!language || !topic) {
+        showToast("Please select a language and a topic!", "warning");
+        return;
+    }
+
+    // Show loading animation
+    const spinner = document.querySelector(".spinner");
+    const btnText = document.querySelector(".btn-text");
+
+    spinner.classList.remove("hidden");
+    btnText.textContent = "Generating...";
+
+    playSound("message-sound");
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/generate_lesson/`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ language, topic }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
             // Hide loading animation
             spinner.classList.add("hidden");
             btnText.textContent = "Generate Lesson";
+            
+            // Update lesson title and content
             document.getElementById("lesson-title").textContent = `Lesson: ${topic} in ${language}`;
-            document.getElementById("lesson-content").textContent = data.lesson;
+            
+            // Parse lesson content with marked.js to convert markdown to HTML
+            document.getElementById("lesson-content").innerHTML = marked.parse(data.lesson);
+
+            // Display the lesson result
             document.getElementById("lesson-result").classList.remove("hidden");
+
+            // Scroll to the lesson result smoothly
+            const lessonResult = document.getElementById("lesson-result");
+            if (lessonResult) {
+                lessonResult.scrollIntoView({ behavior: "smooth" });
+            }
 
             playSound("notification-sound");
             showToast("Lesson generated successfully!", "success");
-
-            lessonResult.scrollIntoView({ behavior: "smooth" });
-        } catch (error) {
-            document.getElementById("lesson-title").textContent = "Error";
-            document.getElementById("lesson-content").textContent = "Could not generate lesson. Try again later.";
-            document.getElementById("lesson-result").classList.remove("hidden");
-
-            playSound("notification-sound");
-            showToast("Error fetching lesson!", "error");
+        } else {
+            // Handle error case if the response is not OK
+            throw new Error("Failed to generate lesson.");
         }
+    } catch (error) {
+        // Handle any errors that occur during the fetch
+        document.getElementById("lesson-title").textContent = "Error";
+        document.getElementById("lesson-content").textContent = "Could not generate lesson. Try again later.";
+        document.getElementById("lesson-result").classList.remove("hidden");
+
+        playSound("notification-sound");
+        showToast("Error fetching lesson!", "error");
+
+        // Log the error for debugging
+        console.error("Error fetching lesson:", error);
     }
+}
+
 
     // Speak Lesson Function
     function speakLesson() {
@@ -616,6 +684,18 @@ document.addEventListener("DOMContentLoaded", () => {
     saveLessonBtn.addEventListener("click", saveLesson);
     shareLessonBtn.addEventListener("click", shareLesson);
     speakLessonBtn.addEventListener("click", speakLesson);
+
+  // Feature card click event listener
+    document.querySelectorAll(".feature-card").forEach((card) => {
+        card.addEventListener("click", function () {
+          const target = this.getAttribute("data-target")
+          if (target === "quiz") {
+            // Redirect to quiz.html for quiz target
+            window.location.href = "quiz.html"
+          } else if (target) {
+            showSection(target)
+          }
+        })
   
   init();
 });
