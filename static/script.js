@@ -685,17 +685,17 @@ async function generateLesson() {
     shareLessonBtn.addEventListener("click", shareLesson);
     speakLessonBtn.addEventListener("click", speakLesson);
 
-  // Feature card click event listener
-    document.querySelectorAll(".feature-card").forEach((card) => {
-        card.addEventListener("click", function () {
-          const target = this.getAttribute("data-target")
-          if (target === "quiz") {
-            // Redirect to quiz.html for quiz target
-            window.location.href = "quiz.html"
-          } else if (target) {
-            showSection(target)
-          }
-        })
+  // // Feature card click event listener
+  //   document.querySelectorAll(".feature-card").forEach((card) => {
+  //       card.addEventListener("click", function () {
+  //         const target = this.getAttribute("data-target")
+  //         if (target === "quiz") {
+  //           // Redirect to quiz.html for quiz target
+  //           window.location.href = "quiz.html"
+  //         } else if (target) {
+  //           showSection(target)
+  //         }
+  //       })
   
   init();
 });
